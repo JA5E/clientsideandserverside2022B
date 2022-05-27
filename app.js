@@ -27,6 +27,20 @@ app.use('/users', usersRouter);
 app.get('/test',(request,response)=>{
   response.send("this is a set");
 });
+/*//////////////////////////////////////////////////////////////*/
+let usersList = express();
+usersList.get('/',(request,response)=>{
+  response.send("This is the list of users section")
+});
+
+let permissions = express();
+permissions.get('/',(request,response)=>{
+  response.send("This is the permissions section!");
+});
+
+usersRouter.use('/usersList',usersList);
+usersRouter.use('/permissions',permissions);
+
 //cambio
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -17,6 +17,22 @@ async function getMultiple(page = 1){
     };
 }
 
+async function getUsers(page = 1){
+    const offset = helper.getOffset(page, config.listPerPage);
+    const rows = await db.query(
+        `SELECT id, username, password, email, role 
+        FROM users LIMIT ${offset}, ${config.listPerPage}`
+    );
+    const data = helper.emptyOrRows(rows);
+    const meta = {page};
+
+    return {
+        data,
+        meta
+    };
+}
+
+
 module.exports = {
-    getMultiple
+    getMultiple, getUsers
 };

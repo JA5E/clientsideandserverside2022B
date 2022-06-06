@@ -43,8 +43,15 @@ permissions.get('/',(request,response)=>{
   response.send("This is the permissions section!");
 });
 
+let jsonlist = express();
+jsonlist.get('/',(request,response)=>{
+  response.send("This is the jsonlist section!");
+});
+
 usersRouter.use('/usersList',usersList);
 usersRouter.use('/permissions',permissions);
+usersRouter.use('/jsonlist',jsonlist);
+
 
 //cambio
 // catch 404 and forward to error handler

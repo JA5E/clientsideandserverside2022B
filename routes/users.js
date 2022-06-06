@@ -12,4 +12,15 @@ router.get('/permissions', function(req, res, next) {
   res.render('templateUsers', {title: 'Users View', message: 'This is the permissions section!'});
 });
 
+const languages = require('../services/languages');
+
+router.get('/jsonlist', async function(req, res, next) {
+  try {
+      res.json(await languages.getUsers(req.query.page));
+  } catch (err) {
+      console.error('Error' + err.message);
+      next(err);
+  }
+});
+
 module.exports = router;

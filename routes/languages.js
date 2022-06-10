@@ -13,5 +13,14 @@ router.get('/', async function(req, res, next) {
     }
 });
 
+router.post('/', async function(req, res, next) {
+    try {
+        res.json(await languages.create(req.body));
+    } catch (err) {
+        console.error('Error while creating a language',err.message);
+        next(err);
+    }
+});
+
 
 module.exports = router;

@@ -55,6 +55,24 @@ async function create(language){
     return {message};
 }
 
+async function update(id,language){
+    const result = await db.query(
+        `UPDATE languages 
+        SET name = '${language.name}',
+        description = '${language.description}',
+        year = '${language.year}'
+        WHERE id = ${id}
+         `
+    );
+    let message = 'Error in updating programming language';
+    if(result.affectedRows){
+        message = 'A language has been updated';
+    }
+
+    return {message};
+}
+
+
 module.exports = {
-    getMultiple, getUsers,create
+    getMultiple, getUsers,create,update
 };

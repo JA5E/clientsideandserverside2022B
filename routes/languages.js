@@ -22,5 +22,22 @@ router.post('/', async function(req, res, next) {
     }
 });
 
+router.post('/', async function(req, res, next) {
+    try {
+        res.json(await languages.create(req.body));
+    } catch (err) {
+        console.error('Error while creating a language',err.message);
+        next(err);
+    }
+});
+
+router.put('/:id', async function(req, res, next) {
+    try {
+        res.json(await languages.update(req.params.id,req.body));
+    } catch (err) {
+        console.error('Error while updating a language',err.message);
+        next(err);
+    }
+});
 
 module.exports = router;

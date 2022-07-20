@@ -9,6 +9,8 @@ var cors =require('cors');
 /*======================================================*/
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var postsRouter = require('./routes/posts');
+var commentsRouter = require('./routes/comments');
 var languagesRouter = require('./routes/languages');
 /*======================================================*/
 
@@ -31,6 +33,8 @@ app.use('/css', express.static(__dirname + "/node_modules/bootstrap/dist/css"));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/languages', languagesRouter);
+app.use('/posts', postsRouter);
+app.use('/comments', commentsRouter);
 /*//////////////////////////////////////////////////////////////*/
 
 app.get('/test',(request,response)=>{
